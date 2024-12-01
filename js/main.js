@@ -320,7 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     logoutBtn.addEventListener('click', function() {
         localStorage.removeItem('currentUser');
-        window.location.href = 'login.html';
+        sessionStorage.removeItem('hasVisited'); // Reset welcome page view
+        window.location.href = 'welcome.html'; // Redirect to welcome instead of login
     });
 
     accountBtn.addEventListener('click', function() {

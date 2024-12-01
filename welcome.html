@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Dot</title>
+    <link rel="stylesheet" href="css/welcome.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="welcome-container">
+      <!-- First Section -->
+      <div class="welcome-card" id="section1">
+        <div class="logo">
+          <i class="fas fa-circle"></i>
+          <h1>dot</h1>
+        </div>
+        <div class="welcome-content">
+          <h2>Welcome to Dot</h2>
+          <div class="note-section">
+            <h3>Important Note</h3>
+            <p>
+              This is a privacy-focused messaging app designed to protect your
+              communications.
+            </p>
+            <ul>
+              <li>
+                <i class="fas fa-shield-alt"></i> Your information will never be
+                leaked or sold to any third parties
+              </li>
+              <li>
+                <i class="fas fa-user-circle"></i> Your username is your unique
+                identity - keep it safe
+              </li>
+              <li>
+                <i class="fas fa-users"></i> Connect with others using their
+                usernames
+              </li>
+              <li>
+                <i class="fas fa-exclamation-circle"></i> Usernames must be
+                appropriate and readable
+              </li>
+              <li>
+                <i class="fas fa-ban"></i> Offensive or inappropriate usernames
+                will be rejected
+              </li>
+            </ul>
+            <p class="privacy-note">
+              We prioritize your privacy and security. No contact information is
+              required - just your username and password.
+            </p>
+          </div>
+          <button class="next-btn" onclick="showSection2()">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Second Section -->
+      <div class="welcome-card" id="section2" style="display: none">
+        <div class="logo">
+          <i class="fas fa-circle"></i>
+          <h1>dot</h1>
+        </div>
+        <div class="welcome-content">
+          <h2>Message Privacy</h2>
+          <div class="note-section">
+            <h3>Important Note</h3>
+            <p>
+              Your privacy is our top priority. Here's how we protect your
+              messages:
+            </p>
+            <ul>
+              <li>
+                <i class="fas fa-clock"></i> Messages auto-delete after 8 hours
+              </li>
+              <li>
+                <i class="fas fa-lock"></i> 8-hour timer is non-adjustable for
+                maximum privacy
+              </li>
+              <li>
+                <i class="fas fa-trash"></i> Messages are permanently deleted
+                from both sides
+              </li>
+              <li>
+                <i class="fas fa-user-secret"></i> Your username is your unique
+                ID
+              </li>
+              <li>
+                <i class="fas fa-exclamation-triangle"></i> Add usernames
+                carefully - they work like phone numbers
+              </li>
+            </ul>
+            <p class="privacy-note">
+              Once messages are deleted, they're gone forever - from your chat,
+              the recipient's chat, and our servers. Be mindful of what you
+              share.
+            </p>
+          </div>
+          <button class="get-started-btn" onclick="startApp()">
+            Get Started <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>
