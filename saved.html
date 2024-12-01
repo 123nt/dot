@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Users - Dot Chat</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Saved Users - dot</title>
+    <link rel="stylesheet" href="css/saved.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header class="chat-header">
-            <a href="main.html" class="back-btn">
+        <header>
+            <button class="back-btn" onclick="window.history.back()">
                 <i class="fas fa-arrow-left"></i>
-            </a>
-            <span>Saved Users</span>
+            </button>
+            <h1>Saved Users</h1>
         </header>
-        <div id="saved-users-list" class="users-list">
-            <!-- Saved users will be loaded here -->
+        
+        <div class="saved-users" id="savedUsers">
+            <!-- Users will be populated by JavaScript -->
         </div>
+
+        <div class="no-users" id="noUsers">
+            <i class="fas fa-user-circle"></i>
+            <p>No saved users</p>
+        </div>
+
+        <button class="add-user-btn" onclick="window.location.href='add-user.html'">
+            <i class="fas fa-user-plus"></i>
+        </button>
     </div>
     <script src="js/saved.js"></script>
 </body>

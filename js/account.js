@@ -14,8 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load current username
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const usernameInput = document.getElementById('username');
+    const statusInput = document.getElementById('status');
     if (currentUser && usernameInput) {
         usernameInput.value = currentUser.username;
+        if (statusInput && currentUser.status) {
+            statusInput.value = currentUser.status;
+        }
     }
 
     // Handle back button
@@ -30,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const newUsername = document.getElementById('username').value.trim();
+            const status = document.getElementById('status').value.trim();
             const currentPassword = document.getElementById('current-password').value;
             const newPassword = document.getElementById('new-password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
@@ -86,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const userIndex = users.findIndex(user => user.username === currentUser.username);
                 if (userIndex !== -1) {
                     users[userIndex].username = newUsername;
+                    users[userIndex].status = status;
                     if (newPassword) {
                         users[userIndex].password = btoa(newPassword);
                     }
@@ -93,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Update current user
                     currentUser.username = newUsername;
+                    currentUser.status = status;
                     if (newPassword) {
                         currentUser.password = btoa(newPassword);
                     }

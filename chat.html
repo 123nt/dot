@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dot chat</title>
-    <link rel="stylesheet" href="css/chat.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="js/chat.js" defer></script>
-  </head>
-  <body>
-    <!-- in this page the messeges will be seen and can be able to send a message from this page -->
-    <div class="chat-container">
-      <div class="chat-header">
-        <button class="back-btn" onclick="window.location.href='main.html'">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <span class="chat-user-name"></span>
-      </div>
-      <div class="messages-container" id="messages">
-        <!-- Messages will be dynamically added here -->
-      </div>
-      <div class="input-container">
-        <input 
-          type="text" 
-          id="message-input" 
-          placeholder="Type a message..." 
-          autocomplete="off"
-        />
-        <button id="send-button" class="send-btn">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - dot</title>
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="back-btn" onclick="window.location.href='saved.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="chat-user">
+                <div class="user-avatar" id="userAvatar"></div>
+                <div class="user-info">
+                    <div class="user-name" id="userName"></div>
+                    <div class="user-status" id="userStatus"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be populated by JavaScript -->
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off">
+            <button id="sendButton">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
-  </body>
+    <script src="js/chat.js"></script>
+</body>
 </html>

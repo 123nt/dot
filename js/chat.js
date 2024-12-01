@@ -1,134 +1,92 @@
 // Chat functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Get current user and selected user from localStorage
-    const currentUser = localStorage.getItem('currentUser');
-    const selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
-    
-    // Debug logs
-    console.log('Current user:', currentUser);
-    console.log('Selected user:', selectedUser);
-    
-    if (!currentUser || !selectedUser) {
-        window.location.href = 'main.html';
+    // Get DOM elements
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    const chatMessages = document.getElementById('chatMessages');
+    const userName = document.getElementById('userName');
+    const userStatus = document.getElementById('userStatus');
+    const userAvatar = document.getElementById('userAvatar');
+
+    // Get selected user from localStorage
+    const selectedUser = localStorage.getItem('selectedUser');
+    if (!selectedUser) {
+        window.location.href = 'saved.html';
         return;
     }
 
-    // Initialize UI elements
-    const chatUserName = document.querySelector('.chat-user-name');
-    const messagesContainer = document.getElementById('messages');
-    const messageInput = document.getElementById('message-input');
-    const sendButton = document.getElementById('send-button');
+    // Set user info in header
+    userName.textContent = selectedUser;
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const selectedUserData = users.find(u => u.username === selectedUser);
+    const status = selectedUserData ? selectedUserData.status || 'Hey! I am using dot' : 'Hey! I am using dot';
+    userStatus.textContent = status;
+    userAvatar.textContent = selectedUser.charAt(0).toUpperCase();
 
-    // Debug log for DOM elements
-    console.log('Message input:', messageInput);
-    console.log('Send button:', sendButton);
-
-    // Set chat header name
-    chatUserName.textContent = selectedUser.name;
-
-    // Initialize messages if not exists
-    let messages = JSON.parse(localStorage.getItem('messages') || '{}');
-
-    function saveMessages() {
-        localStorage.setItem('messages', JSON.stringify(messages));
-    }
-
-    function getChatId() {
-        return [currentUser, selectedUser.id].sort().join('-');
-    }
-
-    function saveMessage(text) {
-        const chatId = getChatId();
-        
-        if (!messages[chatId]) {
-            messages[chatId] = [];
-        }
-
-        const newMessage = {
-            sender: currentUser,
-            receiver: selectedUser.id,
-            text: text,
-            timestamp: new Date().getTime()
-        };
-
-        messages[chatId].push(newMessage);
-        saveMessages();
-        return newMessage;
-    }
-
-    function formatTime(timestamp) {
-        const date = new Date(timestamp);
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-
-    function createMessageElement(message) {
-        const div = document.createElement('div');
-        div.className = `message ${message.sender === currentUser ? 'sent' : 'received'}`;
-        
-        const content = document.createElement('div');
-        content.className = 'message-content';
-        content.textContent = message.text;
-        
-        const time = document.createElement('span');
-        time.className = 'message-time';
-        time.textContent = new Date(message.timestamp).toLocaleTimeString([], { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-        });
-        
-        div.appendChild(content);
-        div.appendChild(time);
-        return div;
-    }
-
-    function displayMessages() {
-        const chatId = getChatId();
-        const chatMessages = messages[chatId] || [];
-        
-        messagesContainer.innerHTML = '';
-        chatMessages.forEach(message => {
-            const messageElement = createMessageElement(message);
-            messagesContainer.appendChild(messageElement);
-        });
-        
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-
-    function sendMessage() {
-        const text = messageInput.value.trim();
-        console.log('Sending message:', text); // Debug log
-
-        if (text) {
-            const message = saveMessage(text);
-            messagesContainer.appendChild(createMessageElement(message));
-            messageInput.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-    }
+    // Load existing messages
+    loadMessages();
 
     // Event listeners
-    sendButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('Send button clicked'); // Debug log
-        sendMessage();
-    });
-
     messageInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     });
 
-    // Back button functionality
-    const backBtn = document.querySelector('.back-btn');
-    backBtn.addEventListener('click', function() {
-        window.location.href = 'main.html';
-    });
+    sendButton.addEventListener('click', sendMessage);
 
-    // Initial display
-    displayMessages();
+    function loadMessages() {
+        const messages = JSON.parse(localStorage.getItem(`messages_${selectedUser}`) || '[]');
+        chatMessages.innerHTML = '';
+        
+        messages.forEach(message => {
+            const div = document.createElement('div');
+            div.className = `message ${message.sent ? 'sent' : 'received'}`;
+            div.textContent = message.content;
+            chatMessages.appendChild(div);
+        });
 
-    // Check for new messages periodically
-    setInterval(displayMessages, 3000);
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function sendMessage() {
+        const content = messageInput.value.trim();
+        if (!content) return;
+
+        // Get existing messages
+        const messages = JSON.parse(localStorage.getItem(`messages_${selectedUser}`) || '[]');
+        
+        // Create new message
+        const newMessage = {
+            content: content,
+            sent: true,
+            timestamp: new Date().toISOString()
+        };
+
+        // Add message
+        messages.push(newMessage);
+        
+        // Save to localStorage
+        localStorage.setItem(`messages_${selectedUser}`, JSON.stringify(messages));
+        
+        // Clear input
+        messageInput.value = '';
+        
+        // Reload messages
+        loadMessages();
+    }
+
+    // Simulate received message (for testing)
+    window.simulateReceived = function(content) {
+        const messages = JSON.parse(localStorage.getItem(`messages_${selectedUser}`) || '[]');
+        messages.push({
+            content: content,
+            sent: false,
+            timestamp: new Date().toISOString()
+        });
+        localStorage.setItem(`messages_${selectedUser}`, JSON.stringify(messages));
+        loadMessages();
+    };
 });
