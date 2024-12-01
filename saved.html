@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dot saved</title>
-    <link rel="stylesheet" href="css/saved.css" />
-    <script src="js/saved.js" defer></script>
-  </head>
-  <body>
-    <!-- in this page where the user saved the people user name like contacts  -->
-    <div class="search-container">
-      <div class="search-header">
-        <h1>dot</h1>
-      </div>
-      <div class="contacts-list"></div>
-      <button
-        class="saved-contacts-btn back"
-        onclick="window.location.href='main.html'"
-      >
-        <span class="btn-icon">•</span>
-      </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Users - Dot Chat</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="chat-header">
+            <a href="main.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <span>Saved Users</span>
+        </header>
+        <div id="saved-users-list" class="users-list">
+            <!-- Saved users will be loaded here -->
+        </div>
     </div>
-  </body>
+    <script src="js/saved.js"></script>
+</body>
 </html>

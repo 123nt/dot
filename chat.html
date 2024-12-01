@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dot chat</title>
     <link rel="stylesheet" href="css/chat.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="js/chat.js" defer></script>
   </head>
   <body>
@@ -12,14 +13,23 @@
     <div class="chat-container">
       <div class="chat-header">
         <button class="back-btn" onclick="window.location.href='main.html'">
-          •
+          <i class="fas fa-arrow-left"></i>
         </button>
-        <h1>dot</h1>
+        <span class="chat-user-name"></span>
       </div>
-      <div class="messages-container"></div>
+      <div class="messages-container" id="messages">
+        <!-- Messages will be dynamically added here -->
+      </div>
       <div class="input-container">
-        <input type="text" placeholder="message" />
-        <button>•</button>
+        <input 
+          type="text" 
+          id="message-input" 
+          placeholder="Type a message..." 
+          autocomplete="off"
+        />
+        <button id="send-button" class="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </div>
     </div>
   </body>

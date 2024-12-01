@@ -7,29 +7,42 @@
     <title>dot main</title>
     <link rel="stylesheet" href="css/main.css" />
     <script src="js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <body>
     <!-- Main app content -->
     <div class="app-content" id="app-content">
-      <div class="search-container">
-        <div class="search-header">
-          <h1>dot</h1>
+      <div class="header-container">
+        <div class="header">
           <div class="dropdown">
-            <button class="dropdown-btn">⋮</button>
+            <button class="dropdown-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
             <div class="dropdown-content">
-              <button id="user-account" class="dropdown-item" onclick="window.location.href='account.html'">My Account: </button>
-              <button id="logout-btn" class="dropdown-item">Logout</button>
+              <button class="dropdown-item">
+                <i class="fas fa-user"></i>Account
+              </button>
+              <button class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i>Logout
+              </button>
             </div>
           </div>
         </div>
-        <div class="contacts-list"></div>
-        <button
-          class="saved-contacts-btn"
-          onclick="window.location.href='saved.html'"
-        >
-          <span class="btn-icon">•</span>
-        </button>
       </div>
+      <div class="users-list-container">
+        <div class="users-list" id="users-list">
+          <!-- User items will be dynamically added here -->
+        </div>
+        <div class="message-preview">
+          <!-- Message preview will be added here -->
+        </div>
+      </div>
+      <button
+        class="saved-contacts-btn"
+        onclick="window.location.href='saved.html'"
+      >
+        <i class="fas fa-bookmark"></i>
+      </button>
     </div>
   </body>
 </html>
