@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Settings - dot</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/account.css" />
+    <script src="js/account.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h2>Account Settings</h2>
+          <p class="subtitle">Update your profile information</p>
+        </div>
+        <form class="auth-form">
+          <div class="form-section">
+            <h3>Profile Information</h3>
+            <div class="form-group">
+              <label for="username">New Username</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter new username"
+                class="auth-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Change Password</h3>
+            <div class="form-group">
+              <label for="current-password">Current Password</label>
+              <input
+                type="password"
+                id="current-password"
+                placeholder="Enter current password"
+                class="auth-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="new-password">New Password</label>
+              <input
+                type="password"
+                id="new-password"
+                placeholder="Enter new password"
+                class="auth-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm New Password</label>
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm new password"
+                class="auth-input"
+              />
+            </div>
+          </div>
+
+          <div id="error-text" class="message"></div>
+
+          <div class="button-group">
+            <button type="submit" class="auth-button primary">
+              Save Changes
+            </button>
+            <button type="button" id="back-btn" class="auth-button secondary">
+              Back to Main
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

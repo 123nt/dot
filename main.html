@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="service-worker-allowed" content="false" />
+    <title>dot main</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/main.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- Main app content -->
+    <div class="app-content" id="app-content">
+      <div class="search-container">
+        <div class="search-header">
+          <h1>dot</h1>
+          <div class="dropdown">
+            <button class="dropdown-btn">⋮</button>
+            <div class="dropdown-content">
+              <button id="user-account" class="dropdown-item" onclick="window.location.href='account.html'">My Account: </button>
+              <button id="logout-btn" class="dropdown-item">Logout</button>
+            </div>
+          </div>
+        </div>
+        <div class="contacts-list"></div>
+        <button
+          class="saved-contacts-btn"
+          onclick="window.location.href='saved.html'"
+        >
+          <span class="btn-icon">•</span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
